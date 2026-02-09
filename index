@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inmobiliaria Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables CSS */
+        :root {
+            --font-size: 16px;
+            --background: #ffffff;
+            --foreground: #252525;
+            --card: #ffffff;
+            --card-foreground: #252525;
+            --primary: #030213;
+            --primary-foreground: #ffffff;
+            --secondary: #f5f5fa;
+            --secondary-foreground: #030213;
+            --muted: #ececf0;
+            --muted-foreground: #717182;
+            --accent: #e9ebef;
+            --accent-foreground: #030213;
+            --destructive: #d4183d;
+            --destructive-foreground: #ffffff;
+            --border: rgba(0, 0, 0, 0.1);
+            --input: transparent;
+            --input-background: #f3f3f5;
+            --radius: 0.625rem;
+            --font-weight-medium: 500;
+            --font-weight-normal: 400;
+        }
+
+        /* Estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            font-size: var(--font-size);
+            line-height: 1.5;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        h4 {
+            font-size: 1rem;
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        label {
+            font-size: 1rem;
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        button {
+            font-size: 1rem;
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        input, textarea {
+            font-size: 1rem;
+            font-weight: var(--font-weight-normal);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Utilidades */
+        .hidden {
+            display: none !important;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .items-start {
+            align-items: flex-start;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .gap-2 {
+            gap: 0.5rem;
+        }
+
+        .gap-3 {
+            gap: 0.75rem;
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .gap-6 {
+            gap: 1.5rem;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .max-w-md {
+            max-width: 28rem;
+        }
+
+        .max-w-2xl {
+            max-width: 42rem;
+        }
+
+        .max-w-4xl {
+            max-width: 56rem;
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .p-4 {
+            padding: 1rem;
+        }
+
+        .p-6 {
+            padding: 1.5rem;
+        }
+
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .py-4 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .py-6 {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .py-8 {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .py-12 {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        .py-20 {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+        }
+
+        .text-lg {
+            font-size: 1.125rem;
+        }
+
+        .text-xl {
+            font-size: 1.25rem;
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+        }
+
+        .text-3xl {
+            font-size: 1.875rem;
+        }
+
+        .text-4xl {
+            font-size: 2.25rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .mb-3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mt-1 {
+            margin-top: 0.25rem;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem;
+        }
+
+        .mt-3 {
+            margin-top: 0.75rem;
+        }
+
+        .space-y-2 > * + * {
+            margin-top: 0.5rem;
+        }
+
+        .space-y-3 > * + * {
+            margin-top: 0.75rem;
+        }
+
+        .space-y-4 > * + * {
+            margin-top: 1rem;
+        }
+
+        .space-y-6 > * + * {
+            margin-top: 1.5rem;
+        }
+
+        .bg-white {
+            background-color: white;
+        }
+
+        .bg-neutral-50 {
+            background-color: #fafafa;
+        }
+
+        .bg-neutral-100 {
+            background-color: #f5f5f5;
+        }
+
+        .bg-neutral-900 {
+            background-color: #171717;
+        }
+
+        .bg-neutral-800 {
+            background-color: #262626;
+        }
+
+        .text-white {
+            color: white;
+        }
+
+        .text-neutral-300 {
+            color: #d4d4d4;
+        }
+
+        .text-neutral-600 {
+            color: #525252;
+        }
+
+        .text-neutral-700 {
+            color: #404040;
+        }
+
+        .text-neutral-800 {
+            color: #262626;
+        }
+
+        .text-neutral-900 {
+            color: #171717;
+        }
+
+        .border {
+            border: 1px solid var(--border);
+        }
+
+        .border-b {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .rounded {
+            border-radius: 0.375rem;
+        }
+
+        .rounded-lg {
+            border-radius: var(--radius);
+        }
+
+        .rounded-full {
+            border-radius: 9999px;
+        }
+
+        .shadow {
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+
+        .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .shadow-md {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .overflow-hidden {
+            overflow: hidden;
+        }
+
+        .overflow-y-auto {
+            overflow-y: auto;
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .whitespace-pre-wrap {
+            white-space: pre-wrap;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        .grid-cols-1 {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .grid-cols-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .grid-cols-4 {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .gap-6 {
+            gap: 1.5rem;
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            outline: none;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-default {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+        }
+
+        .btn-default:hover {
+            background-color: var(--neutral-800);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: var(--border);
+            color: var(--foreground);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent);
+        }
+
+        .btn-ghost {
+            background-color: transparent;
+            color: var(--foreground);
+        }
+
+        .btn-ghost:hover {
+            background-color: var(--accent);
+        }
+
+        /* Inputs */
+        .input {
+            display: block;
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            border: 1px solid var(--border);
+            background-color: var(--input-background);
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .textarea {
+            min-height: 5rem;
+            resize: vertical;
+        }
+
+        /* Radio Group */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .radio-input {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 9999px;
+            border: 1px solid var(--border);
+            appearance: none;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .radio-input:checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .radio-input:checked::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0.4rem;
+            height: 0.4rem;
+            border-radius: 9999px;
+            background-color: white;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.5rem 1.5rem 0;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .badge-outline {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--foreground);
+        }
+
+        .bg-blue-100 {
+            background-color: #dbeafe;
+        }
+
+        .text-blue-800 {
+            color: #1e40af;
+        }
+
+        .bg-green-100 {
+            background-color: #d1fae5;
+        }
+
+        .text-green-800 {
+            color: #065f46;
+        }
+
+        .bg-purple-100 {
+            background-color: #f3e8ff;
+        }
+
+        .text-purple-800 {
+            color: #5b21b6;
+        }
+
+        .bg-yellow-100 {
+            background-color: #fef3c7;
+        }
+
+        .text-yellow-800 {
+            color: #92400e;
+        }
+
+        /* Tabs */
+        .tabs {
+            width: 100%;
+        }
+
+        .tabs-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tabs-trigger {
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            background-color: transparent;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tabs-trigger:hover {
+            background-color: var(--accent);
+        }
+
+        .tabs-trigger.active {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+        }
+
+        /* Separator */
+        .separator {
+            height: 1px;
+            background-color: var(--border);
+            margin: 1rem 0;
+        }
+
+        /* Modal overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            padding: 1rem;
+        }
+
+        /* Floating button */
+        .floating-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 9999px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            z-index: 40;
+        }
+
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+            max-width: 24rem;
+        }
+
+        .toast {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+            animation: slideInRight 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .toast.success {
+            background-color: #10b981;
+            color: white;
+        }
+
+        .toast.info {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        .toast.error {
+            background-color: #ef4444;
+            color: white;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .md\:grid-cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            
+            .md\:grid-cols-3 {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+            
+            .md\:grid-cols-4 {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+            
+            .md\:px-6 {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+            
+            .md\:px-8 {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-3 {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+            
+            .lg\:px-8 {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        /* Imágenes responsivas */
+        .img-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Transiciones */
+        .transition-shadow {
+            transition: box-shadow 0.2s;
+        }
+
+        .hover\:shadow-lg:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .hover\:shadow-md:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenedor principal de la aplicación -->
+    <div id="app">
+        <!-- Contenedor para toasts -->
+        <div id="toast-container" class="toast-container"></div>
+        
+        <!-- Vista pública (inicial) -->
+        <div id="public-view">
+            <!-- Botón flotante para login admin -->
+            <button id="admin-access-btn" class="floating-btn hidden" title="Acceso Administrativo">
+                <i class="fas fa-shield-alt"></i>
+            </button>
+            
+            <!-- Vista de inicio público -->
+            <div id="public-home"></div>
+            
+            <!-- Formulario de solicitud (modal) -->
+            <div id="request-form-modal" class="modal-overlay hidden">
+                <div class="card w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+                    <div class="card-header flex items-center justify-between border-b p-0">
+                        <h3 class="card-title p-6 pb-0">Registrar Solicitud</h3>
+                        <button id="close-form-btn" class="btn btn-ghost m-4 mb-0">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="card-content">
+                        <form id="request-form" class="space-y-6">
+                            <div>
+                                <label for="name" class="block mb-1">Nombre Completo *</label>
+                                <input type="text" id="name" class="input" placeholder="Ingresa tu nombre completo" required>
+                            </div>
+                            
+                            <div>
+                                <label for="phone" class="block mb-1">Teléfono *</label>
+                                <input type="tel" id="phone" class="input" placeholder="10 dígitos" required>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block mb-1">Correo Electrónico *</label>
+                                <input type="email" id="email" class="input" placeholder="correo@ejemplo.com" required>
+                            </div>
+                            
+                            <div>
+                                <label class="block mb-2">Tipo de Operación *</label>
+                                <div class="radio-group">
+                                    <label class="radio-item">
+                                        <input type="radio" name="operationType" value="comprar" class="radio-input" checked>
+                                        <span>Comprar</span>
+                                    </label>
+                                    <label class="radio-item">
+                                        <input type="radio" name="operationType" value="vender" class="radio-input">
+                                        <span>Vender</span>
+                                    </label>
+                                    <label class="radio-item">
+                                        <input type="radio" name="operationType" value="rentar" class="radio-input">
+                                        <span>Rentar</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block mb-2">¿Solicita asesoría contable? *</label>
+                                <div class="radio-group">
+                                    <label class="radio-item">
+                                        <input type="radio" name="needsAccounting" value="si" class="radio-input">
+                                        <span>Sí</span>
+                                    </label>
+                                    <label class="radio-item">
+                                        <input type="radio" name="needsAccounting" value="no" class="radio-input" checked>
+                                        <span>No</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block mb-1">Mensaje Adicional</label>
+                                <textarea id="message" class="input textarea" placeholder="Cuéntanos más sobre lo que buscas..." rows="4"></textarea>
+                            </div>
+                            
+                            <div class="flex gap-3 pt-4">
+                                <button type="button" id="cancel-form-btn" class="btn btn-outline flex-1">Cancelar</button>
+                                <button type="submit" class="btn btn-default flex-1">Enviar Solicitud</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Vista de login -->
+        <div id="login-view" class="hidden min-h-screen bg-neutral-50 flex items-center justify-center p-4">
+            <div class="card w-full max-w-md">
+                <div class="card-header text-center space-y-4">
+                    <div class="flex justify-center">
+                        <div class="bg-neutral-900 p-4 rounded-full">
+                            <i class="fas fa-building text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    <h2 class="card-title text-2xl">Panel Administrativo</h2>
+                    <p class="text-neutral-600">
+                        Ingresa tus credenciales para acceder al sistema
+                    </p>
+                </div>
+                <div class="card-content">
+                    <form id="login-form" class="space-y-4">
+                        <div>
+                            <label for="username" class="block mb-1">Usuario</label>
+                            <input type="text" id="username" class="input" placeholder="admin" required>
+                        </div>
+                        <div>
+                            <label for="password" class="block mb-1">Contraseña</label>
+                            <input type="password" id="password" class="input" placeholder="••••••••" required>
+                        </div>
+                        <div id="login-error" class="text-sm text-red-600 hidden"></div>
+                        <button type="submit" class="btn btn-default w-full">
+                            <i class="fas fa-sign-in-alt mr-2"></i>
+                            Iniciar Sesión
+                        </button>
+                    </form>
+                    <div class="mt-6 p-4 bg-neutral-100 rounded-lg">
+                        <p class="text-xs text-neutral-600 text-center">
+                            Credenciales de prueba:<br>
+                            Usuario: <strong>admin</strong><br>
+                            Contraseña: <strong>admin123</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Vista de administrador -->
+        <div id="admin-view" class="hidden min-h-screen bg-neutral-50">
+            <!-- Header -->
+            <header class="bg-white border-b border-neutral-200">
+                <div class="container py-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-building text-neutral-800 text-2xl"></i>
+                            <div>
+                                <h1 class="text-xl text-neutral-900">Panel Administrativo</h1>
+                                <p class="text-sm text-neutral-600">Gestión de Solicitudes</p>
+                            </div>
+                        </div>
+                        <button id="logout-btn" class="btn btn-outline">
+                            <i class="fas fa-sign-out-alt mr-2"></i>
+                            Cerrar Sesión
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Stats -->
+            <section class="container py-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="card">
+                        <div class="card-header pb-3">
+                            <h3 class="card-title text-sm text-neutral-600">Total Solicitudes</h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="total-requests" class="text-3xl text-neutral-900">0</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header pb-3">
+                            <h3 class="card-title text-sm text-neutral-600">Comprar</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-shopping-cart text-neutral-600"></i>
+                                <span id="comprar-count" class="text-3xl text-neutral-900">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header pb-3">
+                            <h3 class="card-title text-sm text-neutral-600">Vender</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-chart-line text-neutral-600"></i>
+                                <span id="vender-count" class="text-3xl text-neutral-900">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header pb-3">
+                            <h3 class="card-title text-sm text-neutral-600">Rentar</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-home text-neutral-600"></i>
+                                <span id="rentar-count" class="text-3xl text-neutral-900">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Requests Lists -->
+            <section class="container pb-12">
+                <div class="tabs">
+                    <div class="tabs-list">
+                        <button data-tab="todas" class="tabs-trigger active">Todas (<span id="tab-todas-count">0</span>)</button>
+                        <button data-tab="comprar" class="tabs-trigger">Comprar (<span id="tab-comprar-count">0</span>)</button>
+                        <button data-tab="vender" class="tabs-trigger">Vender (<span id="tab-vender-count">0</span>)</button>
+                        <button data-tab="rentar" class="tabs-trigger">Rentar (<span id="tab-rentar-count">0</span>)</button>
+                        <button data-tab="asesoria" class="tabs-trigger">Con Asesoría (<span id="tab-asesoria-count">0</span>)</button>
+                    </div>
+                    
+                    <div id="todas-content" class="tabs-content space-y-4">
+                        <!-- Solicitudes se cargarán aquí -->
+                    </div>
+                    
+                    <div id="comprar-content" class="tabs-content space-y-4 hidden">
+                        <!-- Solicitudes de compra se cargarán aquí -->
+                    </div>
+                    
+                    <div id="vender-content" class="tabs-content space-y-4 hidden">
+                        <!-- Solicitudes de venta se cargarán aquí -->
+                    </div>
+                    
+                    <div id="rentar-content" class="tabs-content space-y-4 hidden">
+                        <!-- Solicitudes de renta se cargarán aquí -->
+                    </div>
+                    
+                    <div id="asesoria-content" class="tabs-content space-y-4 hidden">
+                        <!-- Solicitudes con asesoría se cargarán aquí -->
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Vista de detalle de solicitud -->
+        <div id="detail-view" class="hidden min-h-screen bg-neutral-50">
+            <!-- Header -->
+            <header class="bg-white border-b border-neutral-200">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                    <button id="back-to-admin-btn" class="btn btn-ghost mb-4">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Volver al Panel
+                    </button>
+                    <h1 class="text-2xl text-neutral-900">Detalle de Solicitud</h1>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="flex items-start justify-between">
+                            <h2 class="card-title">Información del Cliente</h2>
+                            <span id="detail-operation-badge" class="badge"></span>
+                        </div>
+                    </div>
+                    <div class="card-content space-y-6">
+                        <!-- Información Personal -->
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-user text-neutral-600 mt-1"></i>
+                                <div>
+                                    <p class="text-sm text-neutral-600">Nombre Completo</p>
+                                    <p id="detail-name" class="text-neutral-900"></p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-envelope text-neutral-600 mt-1"></i>
+                                <div>
+                                    <p class="text-sm text-neutral-600">Correo Electrónico</p>
+                                    <p id="detail-email" class="text-neutral-900"></p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-phone text-neutral-600 mt-1"></i>
+                                <div>
+                                    <p class="text-sm text-neutral-600">Teléfono</p>
+                                    <p id="detail-phone" class="text-neutral-900"></p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-calendar text-neutral-600 mt-1"></i>
+                                <div>
+                                    <p class="text-sm text-neutral-600">Fecha de Solicitud</p>
+                                    <p id="detail-date" class="text-neutral-900"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="separator"></div>
+
+                        <!-- Detalles de la Solicitud -->
+                        <div class="space-y-4">
+                            <h3 class="text-lg text-neutral-900">Detalles de la Solicitud</h3>
+                            
+                            <div class="bg-neutral-50 p-4 rounded-lg space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-neutral-700">Tipo de Operación:</span>
+                                    <span id="detail-operation-type" class="badge"></span>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <span class="text-neutral-700">Asesoría Contable:</span>
+                                    <div id="detail-accounting" class="flex items-center gap-2"></div>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <span class="text-neutral-700">Estado:</span>
+                                    <span id="detail-status" class="badge badge-outline"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="detail-message-section" class="hidden">
+                            <div class="separator"></div>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-comment text-neutral-600"></i>
+                                    <h3 class="text-lg text-neutral-900">Mensaje Adicional</h3>
+                                </div>
+                                <div class="bg-neutral-50 p-4 rounded-lg">
+                                    <p id="detail-message" class="text-neutral-700 whitespace-pre-wrap"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Acciones -->
+                        <div class="separator"></div>
+                        <div class="flex gap-3">
+                            <button id="mark-process-btn" class="btn btn-default flex-1">
+                                Marcar como En Proceso
+                            </button>
+                            <button id="contact-client-btn" class="btn btn-outline flex-1">
+                                Contactar Cliente
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Datos de propiedades
+        const mockProperties = [
+            {
+                id: '1',
+                title: 'Casa Moderna en Residencial',
+                type: 'comprar',
+                price: '$4,500,000',
+                location: 'Lomas de Chapultepec',
+                bedrooms: 4,
+                bathrooms: 3,
+                area: 320,
+                image: 'https://images.unsplash.com/photo-1706808849827-7366c098b317?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBsdXh1cnklMjBob3VzZSUyMGV4dGVyaW9yfGVufDF8fHx8MTc3MDQ1NTYxMHww&ixlib=rb-4.1.0&q=80&w=1080'
+            },
+            {
+                id: '2',
+                title: 'Departamento Contemporáneo',
+                type: 'rentar',
+                price: '$18,000/mes',
+                location: 'Polanco',
+                bedrooms: 2,
+                bathrooms: 2,
+                area: 120,
+                image: 'https://images.unsplash.com/photo-1614622350812-96b09c78af77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb250ZW1wb3JhcnklMjBhcGFydG1lbnQlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NzA0NTU2MTB8MA&ixlib=rb-4.1.0&q=80&w=1080'
+            },
+            {
+                id: '3',
+                title: 'Condominio de Lujo',
+                type: 'comprar',
+                price: '$6,800,000',
+                location: 'Santa Fe',
+                bedrooms: 3,
+                bathrooms: 3,
+                area: 250,
+                image: 'https://images.unsplash.com/photo-1758193431351-68538bf55ec3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwY29uZG8lMjBidWlsZGluZ3xlbnwxfHx8fDE3NzA1MjU3NzZ8MA&ixlib=rb-4.1.0&q=80&w=1080'
+            },
+            {
+                id: '4',
+                title: 'Oficina Corporativa',
+                type: 'rentar',
+                price: '$45,000/mes',
+                location: 'Reforma',
+                bedrooms: 0,
+                bathrooms: 2,
+                area: 180,
+                image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBzcGFjZXxlbnwxfHx8fDE3NzA1MjU3NzZ8MA&ixlib=rb-4.1.0&q=80&w=1080'
+            },
+            {
+                id: '5',
+                title: 'Casa Residencial Familiar',
+                type: 'vender',
+                price: '$3,200,000',
+                location: 'Coyoacán',
+                bedrooms: 3,
+                bathrooms: 2,
+                area: 200,
+                image: 'https://images.unsplash.com/photo-1765765234094-bc009a3bba62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdWJ1cmJhbiUyMGZhbWlseSUyMGhvbWV8ZW58MXx8fHwxNzcwNTA5OTU0fDA&ixlib=rb-4.1.0&q=80&w=1080'
+            },
+            {
+                id: '6',
+                title: 'Penthouse Premium',
+                type: 'comprar',
+                price: '$12,500,000',
+                location: 'Interlomas',
+                bedrooms: 4,
+                bathrooms: 4,
+                area: 450,
+                image: 'https://images.unsplash.com/photo-1568115286680-d203e08a8be6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1cmJhbiUyMHBlbnRob3VzZSUyMHZpZXd8ZW58MXx8fHwxNzcwNTI1Nzc3fDA&ixlib=rb-4.1.0&q=80&w=1080'
+            }
+        ];
+
+        // Solicitudes de ejemplo
+        const mockRequests = [
+            {
+                id: '1',
+                name: 'María González',
+                phone: '5551234567',
+                email: 'maria.gonzalez@email.com',
+                operationType: 'comprar',
+                needsAccounting: true,
+                message: 'Busco una casa de 3 recámaras en zona segura, preferiblemente cerca de escuelas.',
+                date: new Date('2026-02-06T10:30:00').toISOString(),
+                status: 'nueva'
+            },
+            {
+                id: '2',
+                name: 'Carlos Ramírez',
+                phone: '5559876543',
+                email: 'carlos.ramirez@email.com',
+                operationType: 'vender',
+                needsAccounting: false,
+                message: 'Tengo una propiedad en Polanco que me gustaría vender lo antes posible.',
+                date: new Date('2026-02-07T14:15:00').toISOString(),
+                status: 'nueva'
+            },
+            {
+                id: '3',
+                name: 'Ana Torres',
+                phone: '5552468135',
+                email: 'ana.torres@email.com',
+                operationType: 'rentar',
+                needsAccounting: true,
+                message: 'Necesito rentar un departamento amueblado por un año, zona Santa Fe.',
+                date: new Date('2026-02-08T09:45:00').toISOString(),
+                status: 'nueva'
+            }
+        ];
+
+        // Estado de la aplicación
+        let currentView = 'public'; // 'public', 'login', 'admin', 'detail'
+        let isAuthenticated = false;
+        let requests = [];
+        let selectedRequest = null;
+        let currentFilter = 'todos';
+
+        // Elementos del DOM
+        const elements = {
+            // Vistas
+            publicView: document.getElementById('public-view'),
+            loginView: document.getElementById('login-view'),
+            adminView: document.getElementById('admin-view'),
+            detailView: document.getElementById('detail-view'),
+            
+            // Botones
+            adminAccessBtn: document.getElementById('admin-access-btn'),
+            logoutBtn: document.getElementById('logout-btn'),
+            backToAdminBtn: document.getElementById('back-to-admin-btn'),
+            
+            // Formularios
+            loginForm: document.getElementById('login-form'),
+            requestForm: document.getElementById('request-form'),
+            closeFormBtn: document.getElementById('close-form-btn'),
+            cancelFormBtn: document.getElementById('cancel-form-btn'),
+            
+            // Modal
+            requestFormModal: document.getElementById('request-form-modal'),
+            
+            // Contenido dinámico
+            publicHome: document.getElementById('public-home'),
+            
+            // Estadísticas admin
+            totalRequests: document.getElementById('total-requests'),
+            comprarCount: document.getElementById('comprar-count'),
+            venderCount: document.getElementById('vender-count'),
+            rentarCount: document.getElementById('rentar-count'),
+            
+            // Tabs admin
+            tabCounts: {
+                todas: document.getElementById('tab-todas-count'),
+                comprar: document.getElementById('tab-comprar-count'),
+                vender: document.getElementById('tab-vender-count'),
+                rentar: document.getElementById('tab-rentar-count'),
+                asesoria: document.getElementById('tab-asesoria-count')
+            },
+            
+            // Contenido de tabs
+            tabsContent: {
+                todas: document.getElementById('todas-content'),
+                comprar: document.getElementById('comprar-content'),
+                vender: document.getElementById('vender-content'),
+                rentar: document.getElementById('rentar-content'),
+                asesoria: document.getElementById('asesoria-content')
+            },
+            
+            // Detalle de solicitud
+            detailName: document.getElementById('detail-name'),
+            detailEmail: document.getElementById('detail-email'),
+            detailPhone: document.getElementById('detail-phone'),
+            detailDate: document.getElementById('detail-date'),
+            detailOperationBadge: document.getElementById('detail-operation-badge'),
+            detailOperationType: document.getElementById('detail-operation-type'),
+            detailAccounting: document.getElementById('detail-accounting'),
+            detailStatus: document.getElementById('detail-status'),
+            detailMessageSection: document.getElementById('detail-message-section'),
+            detailMessage: document.getElementById('detail-message'),
+            
+            // Botones de detalle
+            markProcessBtn: document.getElementById('mark-process-btn'),
+            contactClientBtn: document.getElementById('contact-client-btn'),
+            
+            // Toast container
+            toastContainer: document.getElementById('toast-container')
+        };
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            initApp();
+            setupEventListeners();
+        });
+
+        function initApp() {
+            // Cargar solicitudes del localStorage o usar las de ejemplo
+            const savedRequests = localStorage.getItem('realEstateRequests');
+            if (savedRequests) {
+                requests = JSON.parse(savedRequests);
+            } else {
+                requests = [...mockRequests];
+                saveRequests();
+            }
+            
+            // Renderizar vista pública inicial
+            renderPublicHome();
+            
+            // Mostrar botón de acceso admin en vista pública
+            elements.adminAccessBtn.classList.remove('hidden');
+            
+            // Actualizar estadísticas admin
+            updateAdminStats();
+            renderAdminRequests();
+        }
+
+        function setupEventListeners() {
+            // Navegación
+            elements.adminAccessBtn.addEventListener('click', () => {
+                showView('login');
+            });
+            
+            elements.logoutBtn.addEventListener('click', handleLogout);
+            elements.backToAdminBtn.addEventListener('click', handleBackToAdmin);
+            
+            // Formularios
+            elements.loginForm.addEventListener('submit', handleLogin);
+            elements.requestForm.addEventListener('submit', handleSubmitRequest);
+            
+            // Modal
+            elements.closeFormBtn.addEventListener('click', () => {
+                elements.requestFormModal.classList.add('hidden');
+            });
+            
+            elements.cancelFormBtn.addEventListener('click', () => {
+                elements.requestFormModal.classList.add('hidden');
+            });
+            
+            // Tabs admin
+            document.querySelectorAll('.tabs-trigger').forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const tab = trigger.getAttribute('data-tab');
+                    switchTab(tab);
+                });
+            });
+            
+            // Botones de detalle
+            elements.markProcessBtn.addEventListener('click', handleMarkAsProcess);
+            elements.contactClientBtn.addEventListener('click', handleContactClient);
+        }
+
+        // Funciones de vista
+        function showView(view) {
+            // Ocultar todas las vistas
+            elements.publicView.classList.add('hidden');
+            elements.loginView.classList.add('hidden');
+            elements.adminView.classList.add('hidden');
+            elements.detailView.classList.add('hidden');
+            elements.requestFormModal.classList.add('hidden');
+            elements.adminAccessBtn.classList.add('hidden');
+            
+            // Mostrar vista solicitada
+            currentView = view;
+            
+            switch(view) {
+                case 'public':
+                    elements.publicView.classList.remove('hidden');
+                    elements.adminAccessBtn.classList.remove('hidden');
+                    break;
+                case 'login':
+                    elements.loginView.classList.remove('hidden');
+                    break;
+                case 'admin':
+                    elements.adminView.classList.remove('hidden');
+                    updateAdminStats();
+                    renderAdminRequests();
+                    break;
+                case 'detail':
+                    elements.detailView.classList.remove('hidden');
+                    renderRequestDetail();
+                    break;
+            }
+        }
+
+        // Funciones de la vista pública
+        function renderPublicHome() {
+            const filteredProperties = currentFilter === 'todos' 
+                ? mockProperties 
+                : mockProperties.filter(p => p.type === currentFilter);
+            
+            elements.publicHome.innerHTML = `
+                <div class="min-h-screen bg-neutral-50">
+                    <!-- Header -->
+                    <header class="bg-white border-b border-neutral-200">
+                        <div class="container py-6">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-building text-neutral-800 text-2xl"></i>
+                                    <h1 class="text-2xl text-neutral-900">Inmobiliaria Premium</h1>
+                                </div>
+                                <button id="request-btn" class="btn btn-default">
+                                    Registrar Solicitud
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Hero Section -->
+                    <section class="bg-neutral-900 text-white py-20">
+                        <div class="container text-center">
+                            <h2 class="text-4xl mb-4">Encuentra tu Espacio Ideal</h2>
+                            <p class="text-lg text-neutral-300 max-w-2xl mx-auto">
+                                Propiedades seleccionadas para compra, venta y renta en las mejores ubicaciones
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Filters -->
+                    <section class="bg-white border-b border-neutral-200">
+                        <div class="container py-6">
+                            <div class="flex items-center gap-4">
+                                <div class="flex items-center gap-2 text-neutral-700">
+                                    <i class="fas fa-filter"></i>
+                                    <span>Filtrar por:</span>
+                                </div>
+                                <div class="flex gap-2 flex-wrap">
+                                    <button data-filter="todos" class="btn ${currentFilter === 'todos' ? 'btn-default' : 'btn-outline'}">
+                                        Todos
+                                    </button>
+                                    <button data-filter="comprar" class="btn ${currentFilter === 'comprar' ? 'btn-default' : 'btn-outline'}">
+                                        Comprar
+                                    </button>
+                                    <button data-filter="vender" class="btn ${currentFilter === 'vender' ? 'btn-default' : 'btn-outline'}">
+                                        Vender
+                                    </button>
+                                    <button data-filter="rentar" class="btn ${currentFilter === 'rentar' ? 'btn-default' : 'btn-outline'}">
+                                        Rentar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Properties Grid -->
+                    <section class="container py-12">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            ${filteredProperties.map(property => `
+                                <div class="card overflow-hidden hover:shadow-lg transition-shadow">
+                                    <div class="relative h-64">
+                                        <img src="${property.image}" alt="${property.title}" class="img-cover">
+                                        <span class="badge absolute top-4 right-4 bg-white text-neutral-900">
+                                            ${property.type.charAt(0).toUpperCase() + property.type.slice(1)}
+                                        </span>
+                                    </div>
+                                    <div class="card-content p-6">
+                                        <h3 class="text-xl text-neutral-900 mb-2">${property.title}</h3>
+                                        <div class="flex items-center gap-2 text-neutral-600 mb-4">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <span>${property.location}</span>
+                                        </div>
+                                        <div class="text-2xl text-neutral-900 mb-4">${property.price}</div>
+                                        <div class="flex items-center gap-4 text-sm text-neutral-600">
+                                            ${property.bedrooms > 0 ? `
+                                                <div class="flex items-center gap-1">
+                                                    <i class="fas fa-bed"></i>
+                                                    <span>${property.bedrooms}</span>
+                                                </div>
+                                            ` : ''}
+                                            <div class="flex items-center gap-1">
+                                                <i class="fas fa-bath"></i>
+                                                <span>${property.bathrooms}</span>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <i class="fas fa-arrows-alt"></i>
+                                                <span>${property.area} m²</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
+                </div>
+            `;
+            
+            // Agregar event listeners a los botones de filtro
+            document.querySelectorAll('[data-filter]').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    currentFilter = e.target.getAttribute('data-filter');
+                    renderPublicHome();
+                });
+            });
+            
+            // Agregar event listener al botón de solicitud
+            document.getElementById('request-btn').addEventListener('click', () => {
+                elements.requestFormModal.classList.remove('hidden');
+            });
+        }
+
+        // Funciones de formulario
+        function handleLogin(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorElement = document.getElementById('login-error');
+            
+            // Autenticación simple
+            if (username === 'admin' && password === 'admin123') {
+                isAuthenticated = true;
+                showToast('Sesión iniciada correctamente', 'success');
+                showView('admin');
+            } else {
+                errorElement.textContent = 'Usuario o contraseña incorrectos';
+                errorElement.classList.remove('hidden');
+            }
+        }
+
+        function handleSubmitRequest(e) {
+            e.preventDefault();
+            
+            const formData = {
+                id: Date.now().toString(),
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                operationType: document.querySelector('input[name="operationType"]:checked').value,
+                needsAccounting: document.querySelector('input[name="needsAccounting"]:checked').value === 'si',
+                message: document.getElementById('message').value,
+                date: new Date().toISOString(),
+                status: 'nueva'
+            };
+            
+            requests.push(formData);
+            saveRequests();
+            
+            // Reset form
+            elements.requestForm.reset();
+            elements.requestFormModal.classList.add('hidden');
+            
+            // Mostrar mensaje de éxito
+            showToast('¡Solicitud enviada exitosamente! Nos pondremos en contacto contigo pronto.', 'success');
+            
+            // Actualizar estadísticas admin si estamos en esa vista
+            if (currentView === 'admin') {
+                updateAdminStats();
+                renderAdminRequests();
+            }
+        }
+
+        // Funciones de administración
+        function updateAdminStats() {
+            const comprarRequests = requests.filter(r => r.operationType === 'comprar');
+            const venderRequests = requests.filter(r => r.operationType === 'vender');
+            const rentarRequests = requests.filter(r => r.operationType === 'rentar');
+            const accountingRequests = requests.filter(r => r.needsAccounting);
+            
+            elements.totalRequests.textContent = requests.length;
+            elements.comprarCount.textContent = comprarRequests.length;
+            elements.venderCount.textContent = venderRequests.length;
+            elements.rentarCount.textContent = rentarRequests.length;
+            
+            // Actualizar contadores de tabs
+            elements.tabCounts.todas.textContent = requests.length;
+            elements.tabCounts.comprar.textContent = comprarRequests.length;
+            elements.tabCounts.vender.textContent = venderRequests.length;
+            elements.tabCounts.rentar.textContent = rentarRequests.length;
+            elements.tabCounts.asesoria.textContent = accountingRequests.length;
+        }
+
+        function renderAdminRequests() {
+            const comprarRequests = requests.filter(r => r.operationType === 'comprar');
+            const venderRequests = requests.filter(r => r.operationType === 'vender');
+            const rentarRequests = requests.filter(r => r.operationType === 'rentar');
+            const accountingRequests = requests.filter(r => r.needsAccounting);
+            
+            // Función para renderizar una tarjeta de solicitud
+            const renderRequestCard = (request) => {
+                const statusMap = {
+                    'nueva': { label: 'Nueva', className: 'bg-blue-100 text-blue-800' },
+                    'en-proceso': { label: 'En Proceso', className: 'bg-yellow-100 text-yellow-800' },
+                    'completada': { label: 'Completada', className: 'bg-green-100 text-green-800' }
+                };
+                
+                const statusInfo = statusMap[request.status] || statusMap['nueva'];
+                const formattedDate = formatDate(request.date);
+                
+                return `
+                    <div class="card hover:shadow-md transition-shadow cursor-pointer" data-id="${request.id}">
+                        <div class="card-content p-4">
+                            <div class="flex items-start justify-between mb-3">
+                                <div>
+                                    <h4 class="text-neutral-900 mb-1">${request.name}</h4>
+                                    <p class="text-sm text-neutral-600">${request.email}</p>
+                                    <p class="text-sm text-neutral-600">${request.phone}</p>
+                                </div>
+                                <div class="text-right">
+                                    <span class="badge ${statusInfo.className}">${statusInfo.label}</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 text-sm">
+                                <span class="text-neutral-500">${formattedDate}</span>
+                                ${request.needsAccounting ? `
+                                    <span class="badge badge-outline text-neutral-700 border-neutral-300">
+                                        <i class="fas fa-check-circle mr-1"></i>
+                                        Asesoría Contable
+                                    </span>
+                                ` : ''}
+                            </div>
+                            ${request.message ? `
+                                <p class="text-sm text-neutral-600 mt-3 line-clamp-2">${request.message}</p>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            };
+            
+            // Renderizar todas las solicitudes
+            elements.tabsContent.todas.innerHTML = requests.length === 0 ? `
+                <div class="card">
+                    <div class="card-content p-12 text-center">
+                        <i class="fas fa-file-alt text-3xl text-neutral-400 mx-auto mb-4"></i>
+                        <p class="text-neutral-600">No hay solicitudes registradas</p>
+                    </div>
+                </div>
+            ` : requests.map(renderRequestCard).join('');
+            
+            // Renderizar solicitudes de compra
+            elements.tabsContent.comprar.innerHTML = comprarRequests.length === 0 ? `
+                <div class="card">
+                    <div class="card-content p-12 text-center">
+                        <i class="fas fa-shopping-cart text-3xl text-neutral-400 mx-auto mb-4"></i>
+                        <p class="text-neutral-600">No hay solicitudes de compra</p>
+                    </div>
+                </div>
+            ` : comprarRequests.map(renderRequestCard).join('');
+            
+            // Renderizar solicitudes de venta
+            elements.tabsContent.vender.innerHTML = venderRequests.length === 0 ? `
+                <div class="card">
+                    <div class="card-content p-12 text-center">
+                        <i class="fas fa-chart-line text-3xl text-neutral-400 mx-auto mb-4"></i>
+                        <p class="text-neutral-600">No hay solicitudes de venta</p>
+                    </div>
+                </div>
+            ` : venderRequests.map(renderRequestCard).join('');
+            
+            // Renderizar solicitudes de renta
+            elements.tabsContent.rentar.innerHTML = rentarRequests.length === 0 ? `
+                <div class="card">
+                    <div class="card-content p-12 text-center">
+                        <i class="fas fa-home text-3xl text-neutral-400 mx-auto mb-4"></i>
+                        <p class="text-neutral-600">No hay solicitudes de renta</p>
+                    </div>
+                </div>
+            ` : rentarRequests.map(renderRequestCard).join('');
+            
+            // Renderizar solicitudes con asesoría
+            elements.tabsContent.asesoria.innerHTML = accountingRequests.length === 0 ? `
+                <div class="card">
+                    <div class="card-content p-12 text-center">
+                        <i class="fas fa-check-circle text-3xl text-neutral-400 mx-auto mb-4"></i>
+                        <p class="text-neutral-600">No hay solicitudes con asesoría contable</p>
+                    </div>
+                </div>
+            ` : accountingRequests.map(renderRequestCard).join('');
+            
+            // Agregar event listeners a las tarjetas
+            document.querySelectorAll('.card[data-id]').forEach(card => {
+                card.addEventListener('click', () => {
+                    const requestId = card.getAttribute('data-id');
+                    selectedRequest = requests.find(r => r.id === requestId);
+                    showView('detail');
+                });
+            });
+        }
+
+        function switchTab(tab) {
+            // Actualizar botones activos
+            document.querySelectorAll('.tabs-trigger').forEach(trigger => {
+                if (trigger.getAttribute('data-tab') === tab) {
+                    trigger.classList.add('active');
+                } else {
+                    trigger.classList.remove('active');
+                }
+            });
+            
+            // Mostrar contenido de la tab seleccionada
+            Object.keys(elements.tabsContent).forEach(key => {
+                if (key === tab) {
+                    elements.tabsContent[key].classList.remove('hidden');
+                } else {
+                    elements.tabsContent[key].classList.add('hidden');
+                }
+            });
+        }
+
+        // Funciones de detalle de solicitud
+        function renderRequestDetail() {
+            if (!selectedRequest) return;
+            
+            const operationLabels = {
+                'comprar': 'Comprar',
+                'vender': 'Vender',
+                'rentar': 'Rentar'
+            };
+            
+            const operationColors = {
+                'comprar': 'bg-blue-100 text-blue-800',
+                'vender': 'bg-green-100 text-green-800',
+                'rentar': 'bg-purple-100 text-purple-800'
+            };
+            
+            const statusLabels = {
+                'nueva': 'Nueva',
+                'en-proceso': 'En Proceso',
+                'completada': 'Completada'
+            };
+            
+            // Actualizar información
+            elements.detailName.textContent = selectedRequest.name;
+            elements.detailEmail.textContent = selectedRequest.email;
+            elements.detailPhone.textContent = selectedRequest.phone;
+            elements.detailDate.textContent = formatDate(selectedRequest.date);
+            
+            // Actualizar badges
+            elements.detailOperationBadge.className = `badge ${operationColors[selectedRequest.operationType]}`;
+            elements.detailOperationBadge.textContent = operationLabels[selectedRequest.operationType];
+            
+            elements.detailOperationType.className = `badge ${operationColors[selectedRequest.operationType]}`;
+            elements.detailOperationType.textContent = operationLabels[selectedRequest.operationType];
+            
+            // Actualizar asesoría contable
+            if (selectedRequest.needsAccounting) {
+                elements.detailAccounting.innerHTML = `
+                    <i class="fas fa-check-circle text-green-600"></i>
+                    <span class="text-green-700">Sí requiere</span>
+                `;
+            } else {
+                elements.detailAccounting.innerHTML = `
+                    <i class="fas fa-times-circle text-neutral-400"></i>
+                    <span class="text-neutral-600">No requiere</span>
+                `;
+            }
+            
+            // Actualizar estado
+            elements.detailStatus.textContent = statusLabels[selectedRequest.status] || 'Nueva';
+            
+            // Actualizar mensaje
+            if (selectedRequest.message) {
+                elements.detailMessage.textContent = selectedRequest.message;
+                elements.detailMessageSection.classList.remove('hidden');
+            } else {
+                elements.detailMessageSection.classList.add('hidden');
+            }
+        }
+
+        function handleMarkAsProcess() {
+            if (!selectedRequest) return;
+            
+            selectedRequest.status = 'en-proceso';
+            saveRequests();
+            
+            showToast('Solicitud marcada como en proceso', 'success');
+            renderRequestDetail();
+            
+            // Actualizar vista admin
+            updateAdminStats();
+            renderAdminRequests();
+        }
+
+        function handleContactClient() {
+            if (!selectedRequest) return;
+            
+            showToast(`Se ha iniciado el contacto con ${selectedRequest.name}`, 'info');
+        }
+
+        // Funciones auxiliares
+        function handleLogout() {
+            isAuthenticated = false;
+            showToast('Sesión cerrada', 'info');
+            showView('public');
+        }
+
+        function handleBackToAdmin() {
+            selectedRequest = null;
+            showView('admin');
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-MX', { 
+                day: '2-digit', 
+                month: 'long', 
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function saveRequests() {
+            localStorage.setItem('realEstateRequests', JSON.stringify(requests));
+        }
+
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            
+            elements.toastContainer.appendChild(toast);
+            
+            // Eliminar toast después de 5 segundos
+            setTimeout(() => {
+                toast.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
